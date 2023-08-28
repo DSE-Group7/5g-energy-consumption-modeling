@@ -7,7 +7,7 @@ st.title("5G Energy Consumption Modeling")
 # st.write("Here's our first attempt at using data to create a table:")
 
 df = pd.read_csv(
-    r'Frontend\SampleSubmission_25.csv')
+    r'OutputFiles\SampleSubmission_25.csv')
 
 ECdata = pd.read_csv(r'Dataset\ECdata.csv')
 # st.write(df)

@@ -4,12 +4,13 @@ from Frontend.Components.input_component import InputComponent
 from Frontend.Components.ranking_component import RankingComponent
 from Frontend.Components.info_component import InfoComponent
 from Frontend.Components.alert_component import AlertComponent
+from Frontend.Components.forecast_component import ForecastComponent
 
 
 def main():
     input_component = InputComponent()
     input_component.show()
-    
+
     info_component = InfoComponent(input_component)
     info_component.show()
 
@@ -24,6 +25,9 @@ def main():
 
     alert_component = AlertComponent()
     alert_component.show()
+
+    forecast_component = ForecastComponent()
+    forecast_component.show()
 
 
 def trial():

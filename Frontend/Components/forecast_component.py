@@ -48,6 +48,6 @@ class ForecastComponent:
         return df
 
     def show(self):
-        st.title("Load Data")
+        st.title("Energy Data")
         bsdata = self.run()
-        st.line_chart(bsdata, x='Time', y='load')
+        st.line_chart(bsdata, x='Time', y='Energy')

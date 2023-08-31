@@ -17,7 +17,7 @@ def forecast(input):
 
     # Load the general model
     bs=input['BS'][0]
-    save_dir = 'saved_models'
+    save_dir = 'Backend\saved_models'
 
     model_filename = os.path.join(save_dir, f'model_{bs}.pkl')
             

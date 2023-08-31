@@ -33,11 +33,13 @@ class DataPreprocessor:
         return BSinfo
 
     def alert_preprocessor(self):
-        Alert = pd.read_csv(r'OutputFiles\Alert.csv')
+        Alert = pd.read_csv(r'OutputFiles\alert.csv')
         Alert['BS'] = Alert['BS'].str.replace('B_', '')
         Alert['Time'] = pd.to_datetime(Alert['Time'])
 
         return Alert
+
+
 class CombinedData:
 
     def __init__(self):

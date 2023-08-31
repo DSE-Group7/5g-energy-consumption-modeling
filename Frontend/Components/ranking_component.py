@@ -15,9 +15,9 @@ class RankingComponent:
         st.write('Your birthday is:', d)
 
     def run(self):
-        d = st.date_input("What is the Day", datetime.date(2023, 1, 1))
+        d = st.date_input("What is the Day", datetime.date(2023, 1, 1),key='ranking_date')
         print(str(d))
-        t = st.time_input('What is the Time', datetime.time(9, 00))
+        t = st.time_input('What is the Time', datetime.time(9, 00), step=3600,key='ranking_time')
         time = str(d) + ' ' + str(t)
         # st.write('Alarm is set for', t)
         df = self.combined_data.submission_ecdata()

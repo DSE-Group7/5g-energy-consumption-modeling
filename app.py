@@ -2,7 +2,9 @@ from Frontend.Components.energy_component import EnergyComponent
 from Frontend.Components.load_component import LoadComponent
 from Frontend.Components.input_component import InputComponent
 from Frontend.Components.ranking_component import RankingComponent
-from Frontend.Components.info_component import InfoComponent   
+from Frontend.Components.info_component import InfoComponent
+from Frontend.Components.alert_component import AlertComponent
+
 
 def main():
     input_component = InputComponent()
@@ -19,6 +21,10 @@ def main():
 
     info_component = InfoComponent(input_component)
     info_component.show()
+
+    alert_component = AlertComponent()
+    alert_component.show()
+
 
 def trial():
     from st_on_hover_tabs import on_hover_tabs

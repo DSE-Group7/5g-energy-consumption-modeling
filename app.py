@@ -9,6 +9,9 @@ from Frontend.Components.alert_component import AlertComponent
 def main():
     input_component = InputComponent()
     input_component.show()
+    
+    info_component = InfoComponent(input_component)
+    info_component.show()
 
     energy_component = EnergyComponent(input_component)
     energy_component.show()
@@ -18,9 +21,6 @@ def main():
 
     ranking_component = RankingComponent()
     ranking_component.show()
-
-    info_component = InfoComponent(input_component)
-    info_component.show()
 
     alert_component = AlertComponent()
     alert_component.show()

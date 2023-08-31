@@ -14,6 +14,6 @@ class InputComponent:
         return self.number
 
     def show(self):
-        st.title("Load Data")
+        st.title("EcoTrack5G")
         self.run()
-        st.write('The current number is ', self.number)
+        # st.write('The current number is ', self.number)

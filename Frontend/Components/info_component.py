@@ -14,13 +14,10 @@ class InfoComponent:
         bsdata = df[df['BS'] == str(number)]
         return bsdata
 
-    def compare(self):
-        pass
-
     def show(self):
         bsdata = self.run(self.input_component.get_number())
-        celldata = bsdata[bsdata['Cell Name'] == str('Cell0')]
+        celldata = bsdata[bsdata['CellName'] == str('Cell0')]
         col1, col2, col3 = st.columns(3)
         col1.metric("Freaquency", celldata['Frequency'].values[0])
         col2.metric("Bandwidth", celldata['Bandwidth'].values[0])
-        col3.metric("TXPower", celldata['TXPower'].values[0])
+        col3.metric("TXPower", celldata['TXpower'].values[0])

@@ -22,11 +22,11 @@ class RankingComponent:
         # st.write('Alarm is set for', t)
         df = self.combined_data.submission_ecdata()
         bsdata = df[df['Time'] == time]
-        bsdata.sort_values(by=['Energy'], inplace=True, ascending=True)
+        bsdata.sort_values(by=['Energy'], inplace=True, ascending=False)
         return bsdata[:5]
 
     def show(self):
-        st.title("Rankings")
+        st.title("Highest Energy Consuming Basestations")
 
         bsdata = self.run()
         # st.line_chart(bsdata, x='Time', y='Energy')

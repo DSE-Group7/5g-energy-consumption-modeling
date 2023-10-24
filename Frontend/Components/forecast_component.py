@@ -5,7 +5,6 @@ from Frontend.Components.input_component import InputComponent
 from Backend.forecast_script import forecast
 from datetime import datetime as dt
 import datetime
-# input = {'Time': ['01/08/2023 10:00'], 'BS': ['B_0'], 'load': [0.59], 'ESMode1': [0], 'ESMode2': [0], 'ESMode6': [0]}
 
 
 class ForecastComponent:

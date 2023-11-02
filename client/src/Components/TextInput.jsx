@@ -10,6 +10,7 @@ const TextInput = ({value,onEnter,setValue}) => {
     }
   return (
     <TextField
+      width="300px"
       sx={{
         borderRadius: "50px",
         backgroundColor: "white",

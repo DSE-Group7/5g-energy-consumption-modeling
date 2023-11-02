@@ -1,10 +1,18 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Box, Drawer, Stack, Typography } from "@mui/material"
 import Graph from "./Barchart"
 import LineChartComponent from "./LineChart"
 import ResponsiveDrawer from "./Drawer"
-import MainPageBody from "./MainPageBody"
+import MainPageBody from "./Forecast"
+import Forecast from "./Forecast"
 const Dashboard = () => {
+  const [content, setContent] = React.useState("Forecast")
+
+  useEffect(() => { 
+    console.log("Content", content)
+  }
+  ,[content])
+
   return (
     <Box
       sx={{
@@ -20,8 +28,10 @@ const Dashboard = () => {
         alignItems: "center", // Center content vertically
       }}
     >
-      <ResponsiveDrawer />
-      <MainPageBody />
+      <ResponsiveDrawer content={content} setContent={setContent} />
+      {content === "Forecast" && <Forecast />}
+      {/* {content === "Estimate" && <MainPageBody />} */}
+      
     </Box>
   )
 }

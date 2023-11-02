@@ -1,23 +1,20 @@
-import os,sys
-print(sys.version)
-from flask import Flask,
-
-
+from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+CORS(app)
 
-# Helper function to check if a file extension is allowed
-# def allowed_file(filename):
-#     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/api/search', methods=['POST'])
-def upload_image():
-    received_data = request.json  # Access the incoming JSON data
-    # Perform processing or search based on the received data
+@app.route('/api/search', methods=['OPTIONS', 'POST'])
+def your_endpoint():
+    # Your endpoint logic here
+    # Ensure to include the 'Access-Control-Allow-Origin' header in the response
+    # response = make_response("Your response")
+    # # response.headers.add("Access-Control-Allow-Origin", "https://didactic-funicular-65r46xgqvv6cg46-3000.preview.app.github.dev")
+    # response.headers.add("Access-Control-Allow-Origin", "*")
 
-    # Return a response (for example)
-    return jsonify({'result': 'Search successful', 'query': received_data['query']})
+    # return response
+    return "hi"
 
 if __name__ == '__main__':
-    app.run( port=3002)
+    app.run(port=3002)

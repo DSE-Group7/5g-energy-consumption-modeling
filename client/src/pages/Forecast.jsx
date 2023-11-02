@@ -14,7 +14,7 @@ const Forecast = () => {
   const handleStepsEnter = (value) => {
     axios
       .post(
-        "http://localhost:3002/api/search",
+        "http://localhost:3002/api/forecast",
         { steps: value }
 
       ) 

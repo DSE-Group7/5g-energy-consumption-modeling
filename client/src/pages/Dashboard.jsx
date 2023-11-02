@@ -5,6 +5,7 @@ import LineChartComponent from "./LineChart"
 import ResponsiveDrawer from "./Drawer"
 import MainPageBody from "./Forecast"
 import Forecast from "./Forecast"
+import Estimate from "./Estimate"
 const Dashboard = () => {
   const [content, setContent] = React.useState("Forecast")
 
@@ -30,8 +31,9 @@ const Dashboard = () => {
     >
       <ResponsiveDrawer content={content} setContent={setContent} />
       {content === "Forecast" && <Forecast />}
+      {content === "Estimate" && <Estimate />}
+
       {/* {content === "Estimate" && <MainPageBody />} */}
-      
     </Box>
   )
 }

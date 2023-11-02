@@ -1,5 +1,5 @@
 import React from "react"
-import { Stack, TextField, Typography } from "@mui/material"
+import { Button, Stack, TextField, Typography } from "@mui/material"
 import LineChartComponent from "./LineChart"
 import Graph from "./Barchart"
 import TextInput from "../Components/TextInput"
@@ -11,11 +11,11 @@ const Forecast = () => {
   const [baseStation, setBaseStation] = React.useState()
   const [frequencyList,setFrequencyList] = React.useState([])
 
-  const handleStepsEnter = (value) => {
+  const handleStepsEnter = (steps) => {
     axios
       .post(
         "http://localhost:3002/api/forecast",
-        { steps: value }
+        { steps: steps }
 
       ) 
       .then((response) => {
@@ -28,9 +28,12 @@ const Forecast = () => {
         console.error("Request failed:", error)
       })
   }
-    const handleBaseStationEnter = (baseStation) => {
+    const handleBaseStationEnter = (steps,basestation) => {
       axios
-        .post("http://localhost:3002/api/search", { steps: baseStation })
+        .post("http://localhost:3002/api/search", {
+          steps: steps,
+          basestation: basestation,
+        })
         .then((response) => {
           console.log(response)
           console.log(response.data)
@@ -55,11 +58,11 @@ const Forecast = () => {
         <TextInput
           value={baseStation}
           setValue={setBaseStation}
-          onEnter={handleBaseStationEnter}
+          onEnter={() =>handleBaseStationEnter(steps,baseStation)}
         />
       </Stack>
       <LineChartComponent frequencyList={frequencyList} />
-      <Graph />
+      {/* <Graph /> */}
     </Stack>
   )
 }

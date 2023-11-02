@@ -18,7 +18,21 @@ print(column_ranges)
 @app.route('/api/forecast', methods=['POST'])
 def forecast():
     steps = int(request.json['steps'])
-    model_fit = ARIMAResults.load('arima_model')
+    model_fit = ARIMAResults.load(f'arima_model')
+    freaquency_list = model_fit.forecast(steps=steps)
+
+    freaquency_list = [{"name": str(index), "Energy": value}
+                       for index, value in freaquency_list.items()]
+
+    return jsonify(freaquency_list)
+
+
+@app.route('/api/search', methods=['POST'])
+def search():
+    steps = int(request.json['steps'])
+    print(request.json)
+    basestation = request.json['basestation']
+    model_fit = ARIMAResults.load(f'arima_model_BS{basestation}')
     freaquency_list = model_fit.forecast(steps=steps)
 
     freaquency_list = [{"name": str(index), "Energy": value}
@@ -33,7 +47,7 @@ def predict_energy():
     with open("catboost.pkl", "rb") as file:
         model = pickle.load(file)
     input_data = request.json['features']
-    
+
     # Convert string values to relevant data formats
     for column, value in input_data.items():
         if data[column].dtype == 'int64':
@@ -41,7 +55,7 @@ def predict_energy():
         elif data[column].dtype == 'float64':
             input_data[column] = float(value)
         # Add more conditions for other data types if needed
-    
+
     input_list = [[input_data[col] for col in data.columns if col != 'Energy']]
     # Passing in variables for prediction
     prediction = model.predict(input_list)

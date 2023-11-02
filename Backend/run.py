@@ -33,7 +33,16 @@ def predict_energy():
     with open("catboost.pkl", "rb") as file:
         model = pickle.load(file)
     input_data = request.json['features']
-    input_list = [[i for i in input_data.values()]]
+    
+    # Convert string values to relevant data formats
+    for column, value in input_data.items():
+        if data[column].dtype == 'int64':
+            input_data[column] = int(value)
+        elif data[column].dtype == 'float64':
+            input_data[column] = float(value)
+        # Add more conditions for other data types if needed
+    
+    input_list = [[input_data[col] for col in data.columns if col != 'Energy']]
     # Passing in variables for prediction
     prediction = model.predict(input_list)
     print("The result is", prediction[0])  # Printing result

@@ -38,6 +38,7 @@ const Estimate = () => {
     axios
       .post("http://localhost:3002/api/predict_energy", { features: inputData })
       .then((response) => {
+        console.log("InputData", inputData)
         console.log(response)
         console.log(response.data)
         setOutputData(response.data)
@@ -45,6 +46,14 @@ const Estimate = () => {
       .catch((error) => {
         console.error("Request failed:", error)
       })
+  }
+
+  const handleInputEnter = (key, value) => {
+    console.log(key, value)
+    setInputData((prevInputData) => ({
+      ...prevInputData,
+      [key]: value,
+    }))
   }
 
   return (
@@ -60,19 +69,41 @@ const Estimate = () => {
         <Stack direction={"row"} spacing={2}>
           <Stack direction={"column"} spacing={0}>
             <Typography>Base Station</Typography>
-            <TextInput width="200px" value={inputData["BS"]} />
+            <TextInput
+              width="200px"
+              value={inputData["BS"]}
+              onEnter={(value) => handleInputEnter("BS", value)}
+              setValue={(value) => setInputData({ ...inputData, BS: value })}
+            />
           </Stack>
           <Stack direction={"column"} spacing={0}>
             <Typography>Hour</Typography>
-            <TextInput width="200px" value={inputData["hour"]} />
+            <TextInput
+              width="200px"
+              value={inputData["hour"]}
+              onEnter={(value) => handleInputEnter("hour", value)}
+              setValue={(value) => setInputData({ ...inputData, hour: value })}
+            />
           </Stack>
           <Stack direction={"column"} spacing={0}>
             <Typography>Mode</Typography>
-            <TextInput width="200px" value={inputData["Mode"]} />
+            <TextInput
+              width="200px"
+              value={inputData["Mode"]}
+              onEnter={(value) => handleInputEnter("Mode", value)}
+              setValue={(value) => setInputData({ ...inputData, Mode: value })}
+            />
           </Stack>
           <Stack direction={"column"} spacing={0}>
             <Typography>RUType</Typography>
-            <TextInput width="200px" value={inputData["RUType"]} />
+            <TextInput
+              width="200px"
+              value={inputData["RUType"]}
+              onEnter={(value) => handleInputEnter("RUType", value)}
+              setValue={(value) =>
+                setInputData({ ...inputData, RUType: value })
+              }
+            />
           </Stack>
         </Stack>
         {selectedCells.map((cell) => (
@@ -85,6 +116,15 @@ const Estimate = () => {
                   <TextInput
                     width="200px"
                     value={inputData[`${column}_${cell}`]}
+                    onEnter={(value) =>
+                      handleInputEnter(`${column}_${cell}`, value)
+                    }
+                    setValue={(value) =>
+                      setInputData({
+                        ...inputData,
+                        [`${column}_${cell}`]: value,
+                      })
+                    }
                   />
                 </div>
               ))}
@@ -96,6 +136,15 @@ const Estimate = () => {
                   <TextInput
                     width="200px"
                     value={inputData[`${column}_${cell}`]}
+                    onEnter={(value) =>
+                      handleInputEnter(`${column}_${cell}`, value)
+                    }
+                    setValue={(value) =>
+                      setInputData({
+                        ...inputData,
+                        [`${column}_${cell}`]: value,
+                      })
+                    }
                   />
                 </div>
               ))}

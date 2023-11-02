@@ -1,14 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Box, Drawer, Stack, Typography } from "@mui/material"
 import Graph from "./Barchart"
 import LineChartComponent from "./LineChart"
 import ResponsiveDrawer from "./Drawer"
-import MainPageBody from "./MainPageBody"
+import MainPageBody from "./Forecast"
+import Forecast from "./Forecast"
+import Estimate from "./Estimate"
 const Dashboard = () => {
+  const [content, setContent] = React.useState("Forecast")
+
+  useEffect(() => { 
+    console.log("Content", content)
+  }
+  ,[content])
+
   return (
     <Box
       sx={{
-        backgroundColor: "#151515",
+        backgroundColor: "#505050",
         color: "#FFFFFF",
         width: "100vw", // Set width to full viewport width
         height: "100vh", // Set height to full viewport height
@@ -20,8 +29,11 @@ const Dashboard = () => {
         alignItems: "center", // Center content vertically
       }}
     >
-      <ResponsiveDrawer />
-      <MainPageBody />
+      <ResponsiveDrawer content={content} setContent={setContent} />
+      {content === "Forecast" && <Forecast />}
+      {content === "Estimate" && <Estimate />}
+
+      {/* {content === "Estimate" && <MainPageBody />} */}
     </Box>
   )
 }

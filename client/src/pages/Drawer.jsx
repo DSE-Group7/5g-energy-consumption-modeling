@@ -19,49 +19,33 @@ import Typography from "@mui/material/Typography"
 
 const drawerWidth = 240
 
-function ResponsiveDrawer(props) {
-  const { window } = props
-  const [mobileOpen, setMobileOpen] = React.useState(false)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+function ResponsiveDrawer({setContent}) {
 
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon sx={{ color: "#FFFFFF" }}>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#FFFFFF" }} primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon sx={{ color: "#FFFFFF" }}>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-
-              <ListItemText sx={{ color: "#FFFFFF" }} primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem key={"Forecast"} disablePadding>
+          <ListItemButton onClick={() => setContent("Forecast")}>
+            <ListItemIcon sx={{ color: "#FFFFFF" }}>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText sx={{ color: "#FFFFFF" }} primary={"Forecast"} />
+          </ListItemButton>
+        </ListItem>
+        <ListItem key={"Estimate"} disablePadding>
+          <ListItemButton onClick={() => setContent("Estimate")}>
+            <ListItemIcon sx={{ color: "#FFFFFF" }}>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText sx={{ color: "#FFFFFF" }} primary={"Estimate"} />
+          </ListItemButton>
+        </ListItem>
       </List>
     </div>
   )
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -75,17 +59,8 @@ function ResponsiveDrawer(props) {
         }}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" }, backgroundColor: "#303030" }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            ECO Track 5G
           </Typography>
         </Toolbar>
       </AppBar>
@@ -108,16 +83,6 @@ function ResponsiveDrawer(props) {
         >
           {drawer}
         </Drawer>
-      </Box>
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-        }}
-      >
-        <Toolbar />
       </Box>
     </Box>
   )

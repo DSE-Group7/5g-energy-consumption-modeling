@@ -17,7 +17,7 @@ const Dashboard = () => {
   return (
     <Box
       sx={{
-        backgroundColor: "#151515",
+        backgroundColor: "#505050",
         color: "#FFFFFF",
         width: "100vw", // Set width to full viewport width
         height: "100vh", // Set height to full viewport height

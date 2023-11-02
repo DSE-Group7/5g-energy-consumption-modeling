@@ -9,8 +9,13 @@ const MainPageBody = () => {
   const [value, setValue] = React.useState("Search")
 
   const handleEnter = (value) => {
-axios.post('https://didactic-funicular-65r46xgqvv6cg46-3002.preview.app.github.dev/api/search', 
-        { steps: value },{maxRedirects: 0}, {headers: {'Access-Control-Allow-Origin': '*'}}
+    axios
+      .post(
+        "https://didactic-funicular-65r46xgqvv6cg46-3002.preview.app.github.dev/api/search",
+        // {steps:value}
+        { steps: value },
+        { maxRedirects: 0 },
+        { headers: { "Access-Control-Allow-Origin": "*" } }
       ) // Pass the entered value as data
       .then((response) => {
         console.log(response)

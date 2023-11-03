@@ -9,16 +9,28 @@ import random
 app = Flask(__name__)
 CORS(app)
 
-data = pd.read_csv("catboost.csv")
+data = pd.read_csv("./submissions/catboost.csv")
 column_ranges = data.agg(['min', 'max']).to_dict()
 
+bsinfo = pd.read_csv("./../Dataset/BSinfo.csv")
+
 print(column_ranges)
+@app.route('/api/get_basestation_data', methods=['POST'])
+def get_basestaion_data():
+    steps = int(request.json['steps'])
+    model_fit = ARIMAResults.load(f'./saved_models/arima_model')
+    freaquency_list = model_fit.forecast(steps=steps)
+
+    freaquency_list = [{"name": str(index), "Energy": value}
+                       for index, value in freaquency_list.items()]
+
+    return jsonify(freaquency_list)
 
 
 @app.route('/api/forecast', methods=['POST'])
 def forecast():
     steps = int(request.json['steps'])
-    model_fit = ARIMAResults.load(f'arima_model')
+    model_fit = ARIMAResults.load(f'./saved_models/arima_model')
     freaquency_list = model_fit.forecast(steps=steps)
 
     freaquency_list = [{"name": str(index), "Energy": value}
@@ -32,7 +44,8 @@ def search():
     steps = int(request.json['steps'])
     print(request.json)
     basestation = request.json['basestation']
-    model_fit = ARIMAResults.load(f'arima_model_BS{basestation}')
+    model_fit = ARIMAResults.load(
+        f'./saved_models/arima_model_BS{basestation}')
     freaquency_list = model_fit.forecast(steps=steps)
 
     freaquency_list = [{"name": str(index), "Energy": value}
@@ -44,7 +57,7 @@ def search():
 @app.route('/api/predict_energy', methods=['POST'])
 def predict_energy():
     # Saving model to pickle file
-    with open("catboost.pkl", "rb") as file:
+    with open("./saved_models/catboost.pkl", "rb") as file:
         model = pickle.load(file)
     input_data = request.json['features']
 

@@ -16,6 +16,7 @@ import MailIcon from "@mui/icons-material/Mail"
 import MenuIcon from "@mui/icons-material/Menu"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
+import QueryStatsIcon from "@mui/icons-material/QueryStats"
 
 const drawerWidth = 240
 
@@ -29,7 +30,7 @@ function ResponsiveDrawer({setContent}) {
         <ListItem key={"Forecast"} disablePadding>
           <ListItemButton onClick={() => setContent("Forecast")}>
             <ListItemIcon sx={{ color: "#FFFFFF" }}>
-              <InboxIcon />
+              <QueryStatsIcon/>
             </ListItemIcon>
             <ListItemText sx={{ color: "#FFFFFF" }} primary={"Forecast"} />
           </ListItemButton>

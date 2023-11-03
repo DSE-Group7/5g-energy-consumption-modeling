@@ -154,7 +154,17 @@ const Estimate = () => {
       </Stack>
       <Stack direction={"row"} spacing={2}>
         <Button
-          style={{ width: "200px" }}
+          style={{
+            fontFamily: "Inter",
+            textTransform: "none",
+            fontWeight: 600,
+            backgroundColor: "#FFCF43",
+            color: "black",
+            borderRadius: "20px",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px 20px", // Add padding to increase the button size
+          }}
           variant="contained"
           onClick={() => {
             fillWithRandomData()
@@ -163,7 +173,17 @@ const Estimate = () => {
           Fill with Random Data
         </Button>
         <Button
-          style={{ width: "200px" }}
+          style={{
+            fontFamily: "Inter",
+            textTransform: "none",
+            fontWeight: 600,
+            backgroundColor: "#FFCF43",
+            color: "black",
+            borderRadius: "20px",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px 20px", // Add padding to increase the button size
+          }}
           variant="contained"
           onClick={() => {
             handlePredict()
@@ -174,6 +194,17 @@ const Estimate = () => {
 
         <Button
           variant="contained"
+          style={{
+            fontFamily: "Inter",
+            textTransform: "none",
+            fontWeight: 600,
+            backgroundColor: "#FFCF43",
+            color: "black",
+            borderRadius: "20px",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "10px 20px", // Add padding to increase the button size
+          }}
           onClick={() => addCell(`Cell${selectedCells.length}`)}
           disabled={selectedCells.length >= 4}
         >
